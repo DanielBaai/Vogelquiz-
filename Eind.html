@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz afgerond</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #f0f8ff;
+        }
+        .score-box {
+            background-color: #e0ffe0;
+            display: inline-block;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Je hebt de quiz voltooid!</h1>
+
+    <div class="score-box">
+        <p id="scoreWeergave">Je score is:</p>
+        <p id="boodschap"></p>
+        <button onclick="opnieuwSpelen()">Opnieuw spelen</button>
+    </div>
+
+    <script>
+        const score = parseInt(localStorage.getItem('score')) || 0;
+        const totaalAantalVragen = 20; // ← pas dit aan als je meer of minder vragen hebt
+
+        // Score tonen
+        document.getElementById('scoreWeergave').textContent = `Je score is: ${score} van de ${totaalAantalVragen}`;
+
+        // Feedback geven op basis van de score
+        let boodschap = '';
+        if (score === totaalAantalVragen) {
+            boodschap = 'Geweldig gedaan! 🎉';
+        } else if (score >= totaalAantalVragen / 2) {
+            boodschap = 'Goed bezig! Nog een beetje oefenen 💪';
+        } else {
+            boodschap = 'Dat ging niet helemaal goed... Probeer het nog eens! 😊';
+        }
+        document.getElementById('boodschap').textContent = boodschap;
+
+        // Functie om opnieuw te starten
+        function opnieuwSpelen() {
+            localStorage.setItem('score', 0);
+            window.location.href = 'vraag1.html';
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="nl">
+    <head>
+        <meta charset="UTF-8">
+        <title>Vraag 1</title>
+    </head>
+    <body>
+        <h1>Vraag 1:</h1>
+        <p>Welke vogel is dit? Luister naar het geluid van de vogel:</p>
+
+        <!-- Audioplayer die we gaan aanpassen via JavaScript -->
+        <audio controls id="audioPlayer">
+           <source id="audioSource" src="" type="audio">
+           Je browser ondersteunt geen audio.
+        </audio>
+
+        <script>
+            // Lijst van vogelgeluiden
+            let vogelGeluiden = [
+                "Merel.mp3",
+                "Koolmees.mp3",
+                "Pimpelmees.mp3"
+            ];
+
+            // Willekeurig geluid kiezen
+            let randomIndex = Math.floor(Math.random() * vogelGeluiden.length);
+            let randomGeluid = vogelGeluiden[randomIndex];
+
+            // Het audio-element de juiste bron geven
+            document.getElementById('audioSource').src = "audio/" + randomGeluid;
+
+            // Audio opnieuw laden zodat het meteen goed werkt
+            document.getElementById('audioPlayer').load();
+        </script>
+    </body>
+</html>

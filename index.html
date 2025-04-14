@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="nl">
+    <head>
+        <meta charset="UTF-8">
+        <title>Vogelquiz broedvogels</title>
+        <style>
+            button {
+              background-color: #339933;
+              color: white;
+              padding: 1rem 2rem;
+              border: none;
+              font-size: 1.2rem;
+              border-radius: 10px;
+              cursor: pointer;
+            }
+
+            button:hover {
+              background-color: #2a7a2a;
+            }
+
+            /* Optioneel: Je kunt de afbeelding centreren */
+            .intro-image {
+                display: block;
+                margin-left: 0 auto;
+                margin-right: 10;
+                max-width: 70%;
+                height: auto;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Welkom bij de Nederlandse broedvogelgeluidenquiz</h1>
+        <p>De quiz waar iedereen op heeft gewacht</p>
+
+        <!-- Voeg de afbeelding toe -->
+        <img src="afbeeldingen/Vink.jpg" alt="Afbeelding van een broedvogel" class="intro-image">
+
+        <!-- De Start de quiz knop -->
+        <button onclick="startQuiz()">Start de quiz</button>
+
+        <script>
+            // Reset de localStorage wanneer de pagina wordt geladen
+            localStorage.removeItem('score');  // Verwijder de score
+            localStorage.removeItem('huidigeVraagNummer');  // Verwijder het vraagnummer
+
+            // Functie om de quiz te starten
+            function startQuiz() {
+                // Stel het begin vraagnummer in localStorage (bijv. Vraag 1)
+                localStorage.setItem('huidigeVraagNummer', 1);
+
+                // Navigeer naar Vraag1.html
+                window.location.href = "Vraag1.html";
+            }
+        </script>
+    </body>
+</html>

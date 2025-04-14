@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="nl">
+    <head>
+        <meta charset="UTF-8">
+        <title>Goed Beantwoord!</title>
+    </head>
+    <body>
+        <h1>Goed Beantwoord!</h1>
+        <p>Je hebt het juiste antwoord gekozen. Gefeliciteerd!</p>
+        <button onclick="volgendeVraag()">Volgende Vraag</button>
+
+        <script>
+            // Functie om naar de volgende vraag te gaan
+            function volgendeVraag() {
+                // Haal het vraagnummer op uit localStorage
+                let huidigeVraagNummer = parseInt(localStorage.getItem('huidigeVraagNummer'));
+
+                console.log(huidigeVraagNummer);  // Controleer de waarde van het vraagnummer
+
+                // Verhoog het vraagnummer voor de volgende vraag
+                let volgendeVraagNummer = huidigeVraagNummer + 1;
+
+                // Update het vraagnummer in localStorage
+                localStorage.setItem('huidigeVraagNummer', volgendeVraagNummer);
+
+                // Stuur de gebruiker naar de volgende vraagpagina
+                window.location.href = 'vraag' + volgendeVraagNummer + '.html';}
+        </script>
+    </body>
+</html>
