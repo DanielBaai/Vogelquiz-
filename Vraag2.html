@@ -5,11 +5,69 @@
         <title>Quizpagina 2</title>
         <style> 
             body {
-                background-color: rgb(169, 222, 155);
-            }
+        background-color: rgb(169, 222, 155);
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+    }
+    .score-display {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        font-size: 18px;
+        font-weight: bold;
+        background-color: rgba(255, 255, 255, 0.7);
+        padding: 8px 12px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+    .Vraagmetknoppen {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh; /* vult hele schermhoogte */
+        text-align: center;
+    }
+
+    h1 {
+        margin-bottom: 10px;
+    }
+
+    p {
+        margin-bottom: 85px;
+    }
+
+    audio {
+        margin-bottom: 70px;
+    }
+
+    .knop-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .antwoordKnop {
+        width: 230px;
+        padding: 1.5rem;
+        background-color: rgb(165, 245, 248);
+        border: 2px solid #333;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    .Wrapper{
+        margin-top: -40px;
+        margin-left: -850px;
+    }
         </style>
     </head>
     <body>
+        <div id="scoreDisplay" class="score-display"></div>
+<div class="Wrapper">
+    <div class="Vraagmetknoppen">
         <h1>Vraag 2:</h1>
         <p>Welke vogel is dit? Luister naar het geluid van de vogel:</p>
 
@@ -18,11 +76,14 @@
            <source id="audioSource" src="" type="audio/mp3">
            Je browser ondersteunt geen audio.
         </audio>
-        <button id="antwoord1">Antwoord 1</button>
-        <button id="antwoord2">Antwoord 2</button>
-        <button id="antwoord3">Antwoord 3</button>
-        <button id="antwoord4">Antwoord 4</button>
-
+        <div class="knop-container"> 
+        <button class="antwoordKnop" id="antwoord1">Antwoord 1</button>
+        <button class="antwoordKnop" id="antwoord2">Antwoord 2</button>
+        <button class="antwoordKnop" id="antwoord3">Antwoord 3</button>
+        <button class="antwoordKnop" id="antwoord4">Antwoord 4</button>
+        </div>
+    </div>
+</div>
         <script>
             // Haal het huidige vraagnummer op uit localStorage
             let huidigeVraagNummer = parseInt(localStorage.getItem('huidigeVraagNummer')) || 1;
@@ -122,6 +183,8 @@
                     window.location.href = 'fout.html';
                 }
             }
+            let score = parseInt(localStorage.getItem('score')) || 0;
+            document.getElementById('scoreDisplay').textContent = `Score: ${score}`;
         </script>
     </body>
 </html>

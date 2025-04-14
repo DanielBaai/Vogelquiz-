@@ -4,12 +4,71 @@
         <meta charset="UTF-8">
         <title>Quizpagina 1</title>
         <style> 
-            body {
-                background-color: rgb(169, 222, 155);
-            }
-        </style>
+    body {
+        background-color: rgb(169, 222, 155);
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+    }
+    .score-display {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        font-size: 18px;
+        font-weight: bold;
+        background-color: rgba(255, 255, 255, 0.7);
+        padding: 8px 12px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+    .Vraagmetknoppen {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh; /* vult hele schermhoogte */
+        text-align: center;
+    }
+
+    h1 {
+        margin-bottom: 10px;
+    }
+
+    p {
+        margin-bottom: 85px;
+    }
+
+    audio {
+        margin-bottom: 70px;
+    }
+
+    .knop-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .antwoordKnop {
+        width: 230px;
+        padding: 1.5rem;
+        background-color: rgb(165, 245, 248);
+        border: 2px solid #333;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    .Wrapper{
+        margin-top: -40px;
+        margin-left: -850px;
+    }
+</style>
+
     </head>
     <body>
+        <div id="scoreDisplay" class="score-display"></div>
+<div class="Wrapper">
+    <div class="Vraagmetknoppen">
         <h1>Vraag 1:</h1>
         <p>Welke vogel is dit? Luister naar het geluid van de vogel:</p>
 
@@ -18,22 +77,22 @@
            <source id="audioSource" src="" type="audio/mp3">
            Je browser ondersteunt geen audio.
         </audio>
-        <button id="antwoord1">Antwoord 1</button>
-        <button id="antwoord2">Antwoord 2</button>
-        <button id="antwoord3">Antwoord 3</button>
-        <button id="antwoord4">Antwoord 4</button>
+        <div class="knop-container"> 
+        <button class="antwoordKnop" id="antwoord1">Antwoord 1</button>
+        <button class="antwoordKnop" id="antwoord2">Antwoord 2</button>
+        <button class="antwoordKnop" id="antwoord3">Antwoord 3</button>
+        <button class="antwoordKnop" id="antwoord4">Antwoord 4</button>
+        </div>
+    </div>
+</div>
         <script>
-            // Zet het vraagnummer voor Vraag 1 in localStorage (bij het starten van de quiz)
             if (!localStorage.getItem('huidigeVraagNummer')) {
                 localStorage.setItem('huidigeVraagNummer', 1);
             }
-
-            // Haal het huidige vraagnummer op uit localStorage
             let huidigeVraagNummer = parseInt(localStorage.getItem('huidigeVraagNummer'));
-
+            
             console.log(huidigeVraagNummer);  // Controleer de waarde van het vraagnummer
 
-            // Lijst van vogelgeluiden
             let vogelGeluiden = [
                 { naam: "Blauwe Reiger", bestand: "audio/Blauwe Reiger.mp3" },
                 { naam: "Boomklever", bestand: "audio/Boomklever.mp3" },
@@ -72,7 +131,7 @@
                 { naam: "Zwartkop", bestand: "audio/zwartkop.mp3" },
             ];
 
-            // Willekeurig geluid kiezen uit de lijst
+            
             let randomIndex = Math.floor(Math.random() * vogelGeluiden.length);
             let gekozenVogel = vogelGeluiden[randomIndex];
             let juisteAntwoord = gekozenVogel.naam;
@@ -85,25 +144,23 @@
                 }
             }
 
-            // Het gekozen geluid aan de audio-player toewijzen
+           
             document.getElementById('audioSource').src = gekozenVogel.bestand;
 
-            // Zorg ervoor dat de audio opnieuw wordt geladen en klaar is om afgespeeld te worden
+           
             document.getElementById('audioPlayer').load();
 
-            // Voeg de juiste vogel en de foute antwoorden samen in één array
             let antwoorden = [juisteAntwoord, ...fouteAntwoorden];
 
-            // Schud de antwoorden zodat ze willekeurig worden gepresenteerd
             antwoorden = antwoorden.sort(() => Math.random() - 0.5);
 
-            // Vul de knoppen met de antwoorden
+           
             document.getElementById('antwoord1').textContent = antwoorden[0];
             document.getElementById('antwoord2').textContent = antwoorden[1];
             document.getElementById('antwoord3').textContent = antwoorden[2];
             document.getElementById('antwoord4').textContent = antwoorden[3];
 
-            // Voeg de event listeners toe voor de knoppen
+            
             document.getElementById('antwoord1').onclick = function() {
                 controleerAntwoord(antwoorden[0]);
             };
@@ -117,23 +174,24 @@
                 controleerAntwoord(antwoorden[3]);
             };
 
-            // Functie die controleert of het gekozen antwoord juist is
+            
             function controleerAntwoord(antwoord) {
                 if (antwoord === juisteAntwoord) {
                     let huidigeScore = parseInt(localStorage.getItem('score')) || 0;
                     localStorage.setItem('score', huidigeScore + 1);
 
-                    // Update het vraagnummer voor de volgende vraag
+                   
                     localStorage.setItem('huidigeVraagNummer', huidigeVraagNummer);
 
-                    // Navigeer naar de "goed" pagina
+                    
                     window.location.href = `goed.html?vraagNummer=${huidigeVraagNummer}`;
                 } else {
-                    // Navigeer naar de "fout" pagina
+                    
                     window.location.href = `fout.html?vraagNummer=${huidigeVraagNummer}`;
                 }
             }
-
+            let score = parseInt(localStorage.getItem('score')) || 0;
+            document.getElementById('scoreDisplay').textContent = `Score: ${score}`;
         </script>
     </body>
 </html>
