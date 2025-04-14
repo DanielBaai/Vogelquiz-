@@ -4,14 +4,21 @@
         <meta charset="UTF-8">
         <title>Vogelquiz broedvogels</title>
         <style>
+            body {
+                background-color: rgb(169, 222, 155);
+            }
             button {
-              background-color: #339933;
-              color: white;
-              padding: 1rem 2rem;
-              border: none;
-              font-size: 1.2rem;
-              border-radius: 10px;
-              cursor: pointer;
+              position: absolute;
+                top: 45%;     /* pas deze waarde aan om omhoog of omlaag te schuiven */
+                left: 76%;    /* pas deze om naar links/rechts te bewegen */
+                transform: translate(-50%, -50%);
+                background-color: #339933;
+                color: white;
+                padding: 1rem 2rem;
+                border: none;
+                font-size: 1.2rem;
+                border-radius: 10px;
+                cursor: pointer;
             }
 
             button:hover {
@@ -20,11 +27,13 @@
 
             /* Optioneel: Je kunt de afbeelding centreren */
             .intro-image {
-                display: block;
-                margin-left: 0 auto;
-                margin-right: 10;
-                max-width: 70%;
-                height: auto;
+                position: absolute;
+                top: 57%;     /* pas deze waarde aan om omhoog of omlaag te schuiven */
+                left: 32.5%;    /* pas deze om naar links/rechts te bewegen */
+                transform: translate(-50%, -50%);
+                border-radius: 10px;
+                max-width: 64.5%;
+                cursor: pointer;
             }
         </style>
     </head>
