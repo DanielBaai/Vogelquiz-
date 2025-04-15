@@ -85,113 +85,90 @@
         </div>
     </div>
 </div>
-        <script>
-            if (!localStorage.getItem('huidigeVraagNummer')) {
-                localStorage.setItem('huidigeVraagNummer', 1);
-            }
-            let huidigeVraagNummer = parseInt(localStorage.getItem('huidigeVraagNummer'));
-            
-            console.log(huidigeVraagNummer);  // Controleer de waarde van het vraagnummer
-
-            let vogelGeluiden = [
-                { naam: "Blauwe Reiger", bestand: "audio/Blauwe Reiger.mp3" },
-                { naam: "Boomklever", bestand: "audio/Boomklever.mp3" },
-                { naam: "Boomkruiper", bestand: "audio/Boomkruiper.mp3" },
-                { naam: "Ekster", bestand: "audio/Ekster.mp3" },
-                { naam: "Fitis", bestand: "audio/Fitis.mp3" },
-                { naam: "Gaai", bestand: "audio/Gaai.mp3" },
-                { naam: "Gierzwaluw", bestand: "audio/Gierzwaluw.mp3" },
-                { naam: "Groenling", bestand: "audio/Groenling.mp3" },
-                { naam: "Grote bonte specht", bestand: "audio/Grote bonte specht.mp3" },
-                { naam: "Heggemus", bestand: "audio/Heggemus.mp3" },
-                { naam: "Holenduif", bestand: "audio/Holenduif.mp3" },
-                { naam: "Houtduif", bestand: "audio/Houtduif.mp3" },
-                { naam: "Huismus", bestand: "audio/Huismus.mp3" },
-                { naam: "Kauw", bestand: "audio/Kauw.mp3" },
-                { naam: "Kokmeeuw", bestand: "audio/Kokmeeuw.mp3" },
-                { naam: "Koolmees", bestand: "audio/Koolmees.mp3" },
-                { naam: "Meerkoet", bestand: "audio/Meerkoet.mp3" },
-                { naam: "Merel", bestand: "audio/Merel.mp3" },
-                { naam: "Nijlgans", bestand: "audio/Nijlgans.mp3" },
-                { naam: "Pimpelmees", bestand: "audio/Pimpelmees.mp3" },
-                { naam: "Putter", bestand: "audio/Putter.mp3" },
-                { naam: "Roodborst", bestand: "audio/Roodborst.mp3" },
-                { naam: "Scholekster", bestand: "audio/Scholekster.mp3" },
-                { naam: "Soepeend", bestand: "audio/Soepeend.mp3" },
-                { naam: "Spreeuw", bestand: "audio/Spreeuw.mp3" },
-                { naam: "Stadsduif", bestand: "audio/Stadsduif.mp3" },
-                { naam: "Tjiftjaf", bestand: "audio/tjiftjaf.mp3" },
-                { naam: "Turkse tortel", bestand: "audio/Turkse tortel.mp3" },
-                { naam: "Vink", bestand: "audio/vink.mp3" },
-                { naam: "Waterhoen", bestand: "audio/waterhoen.mp3" },
-                { naam: "Wilde eend", bestand: "audio/wilde eend.mp3" },
-                { naam: "Winterkoning", bestand: "audio/winterkoning.mp3" },
-                { naam: "Zanglijster", bestand: "audio/zanglijster.mp3" },
-                { naam: "Zwarte kraai", bestand: "audio/zwarte kraai.mp3" },
-                { naam: "Zwartkop", bestand: "audio/zwartkop.mp3" },
-            ];
-
-            
-            let randomIndex = Math.floor(Math.random() * vogelGeluiden.length);
-            let gekozenVogel = vogelGeluiden[randomIndex];
-            let juisteAntwoord = gekozenVogel.naam;
-            let fouteAntwoorden = [];
-            while (fouteAntwoorden.length < 3) {
-                let randomIndex = Math.floor(Math.random() * vogelGeluiden.length)
-                let gekozenVogel = vogelGeluiden[randomIndex];
-                if (gekozenVogel.naam !== juisteAntwoord && !fouteAntwoorden.includes(gekozenVogel.naam)){
-                    fouteAntwoorden.push(gekozenVogel.naam);
-                }
-            }
-
+<script>
            
-            document.getElementById('audioSource').src = gekozenVogel.bestand;
+    let vogelGeluiden = [
+        { naam: "Blauwe Reiger", bestand: "audio/Blauwe Reiger.mp3" },
+        { naam: "Boomklever", bestand: "audio/Boomklever.mp3" },
+        { naam: "Boomkruiper", bestand: "audio/Boomkruiper.mp3" },
+        { naam: "Ekster", bestand: "audio/Ekster.mp3" },
+        { naam: "Fitis", bestand: "audio/Fitis.mp3" },
+        { naam: "Gaai", bestand: "audio/Gaai.mp3" },
+        { naam: "Gierzwaluw", bestand: "audio/Gierzwaluw.mp3" },
+        { naam: "Groenling", bestand: "audio/Groenling.mp3" },
+        { naam: "Grote bonte specht", bestand: "audio/Grote bonte specht.mp3" },
+        { naam: "Heggemus", bestand: "audio/Heggemus.mp3" },
+        { naam: "Holenduif", bestand: "audio/Holenduif.mp3" },
+        { naam: "Houtduif", bestand: "audio/Houtduif.mp3" },
+        { naam: "Huismus", bestand: "audio/Huismus.mp3" },
+        { naam: "Kauw", bestand: "audio/Kauw.mp3" },
+        { naam: "Kokmeeuw", bestand: "audio/Kokmeeuw.mp3" },
+        { naam: "Koolmees", bestand: "audio/Koolmees.mp3" },
+        { naam: "Meerkoet", bestand: "audio/Meerkoet.mp3" },
+        { naam: "Merel", bestand: "audio/Merel.mp3" },
+        { naam: "Nijlgans", bestand: "audio/Nijlgans.mp3" },
+        { naam: "Pimpelmees", bestand: "audio/Pimpelmees.mp3" },
+        { naam: "Putter", bestand: "audio/Putter.mp3" },
+        { naam: "Roodborst", bestand: "audio/Roodborst.mp3" },
+        { naam: "Scholekster", bestand: "audio/Scholekster.mp3" },
+        { naam: "Soepeend", bestand: "audio/Soepeend.mp3" },
+        { naam: "Spreeuw", bestand: "audio/Spreeuw.mp3" },
+        { naam: "Stadsduif", bestand: "audio/Stadsduif.mp3" },
+        { naam: "Tjiftjaf", bestand: "audio/tjiftjaf.mp3" },
+        { naam: "Turkse tortel", bestand: "audio/Turkse tortel.mp3" },
+        { naam: "Vink", bestand: "audio/vink.mp3" },
+        { naam: "Waterhoen", bestand: "audio/waterhoen.mp3" },
+        { naam: "Wilde eend", bestand: "audio/wilde eend.mp3" },
+        { naam: "Winterkoning", bestand: "audio/winterkoning.mp3" },
+        { naam: "Zanglijster", bestand: "audio/zanglijster.mp3" },
+        { naam: "Zwarte kraai", bestand: "audio/zwarte kraai.mp3" },
+        { naam: "Zwartkop", bestand: "audio/zwartkop.mp3" },
+    ];
 
-           
-            document.getElementById('audioPlayer').load();
+    
+    const quizVogels = JSON.parse(localStorage.getItem('quizVogels'));
+const huidigeVraagNummer = 18;
+localStorage.setItem('huidigeVraagNummer', huidigeVraagNummer);
+const gekozenVogel = quizVogels[huidigeVraagNummer - 1];
+const juisteAntwoord = gekozenVogel.naam;
 
-            let antwoorden = [juisteAntwoord, ...fouteAntwoorden];
+// Kies 3 unieke foute antwoorden
+let fouteAntwoorden = [];
+while (fouteAntwoorden.length < 3) {
+    const random = vogelGeluiden[Math.floor(Math.random() * vogelGeluiden.length)];
+    if (random.naam !== juisteAntwoord && !fouteAntwoorden.includes(random.naam)) {
+        fouteAntwoorden.push(random.naam);
+    }
+}
 
-            antwoorden = antwoorden.sort(() => Math.random() - 0.5);
+const antwoorden = [juisteAntwoord, ...fouteAntwoorden].sort(() => 0.5 - Math.random());
 
-           
-            document.getElementById('antwoord1').textContent = antwoorden[0];
-            document.getElementById('antwoord2').textContent = antwoorden[1];
-            document.getElementById('antwoord3').textContent = antwoorden[2];
-            document.getElementById('antwoord4').textContent = antwoorden[3];
+document.getElementById('audioSource').src = gekozenVogel.bestand;
+document.getElementById('audioPlayer').load();
 
-            
-            document.getElementById('antwoord1').onclick = function() {
-                controleerAntwoord(antwoorden[0]);
-            };
-            document.getElementById('antwoord2').onclick = function() {
-                controleerAntwoord(antwoorden[1]);
-            };
-            document.getElementById('antwoord3').onclick = function() {
-                controleerAntwoord(antwoorden[2]);
-            };
-            document.getElementById('antwoord4').onclick = function() {
-                controleerAntwoord(antwoorden[3]);
-            };
+document.getElementById('antwoord1').textContent = antwoorden[0];
+document.getElementById('antwoord2').textContent = antwoorden[1];
+document.getElementById('antwoord3').textContent = antwoorden[2];
+document.getElementById('antwoord4').textContent = antwoorden[3];
 
-            
-            function controleerAntwoord(antwoord) {
-                if (antwoord === juisteAntwoord) {
-                    let huidigeScore = parseInt(localStorage.getItem('score')) || 0;
-                    localStorage.setItem('score', huidigeScore + 1);
+document.getElementById('antwoord1').onclick = () => controleerAntwoord(antwoorden[0]);
+document.getElementById('antwoord2').onclick = () => controleerAntwoord(antwoorden[1]);
+document.getElementById('antwoord3').onclick = () => controleerAntwoord(antwoorden[2]);
+document.getElementById('antwoord4').onclick = () => controleerAntwoord(antwoorden[3]);
 
-                   
-                    localStorage.setItem('huidigeVraagNummer', huidigeVraagNummer);
+function controleerAntwoord(antwoord) {
+    if (antwoord === juisteAntwoord) {
+        const huidigeScore = parseInt(localStorage.getItem('score')) || 0;
+        localStorage.setItem('score', huidigeScore + 1);
+        window.location.href = `goed.html?vraagNummer=${huidigeVraagNummer}`;
+    } else {
+        window.location.href = `fout.html?vraagNummer=${huidigeVraagNummer}`;
+    }
+}
 
-                    
-                    window.location.href = `goed.html?vraagNummer=${huidigeVraagNummer}`;
-                } else {
-                    
-                    window.location.href = `fout.html?vraagNummer=${huidigeVraagNummer}`;
-                }
-            }
-            let score = parseInt(localStorage.getItem('score')) || 0;
-            document.getElementById('scoreDisplay').textContent = `Score: ${score}`;
-        </script>
+// Toon score
+const score = parseInt(localStorage.getItem('score')) || 0;
+document.getElementById('scoreDisplay').textContent = `Score: ${score}`;
+</script>
     </body>
 </html>

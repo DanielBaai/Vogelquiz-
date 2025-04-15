@@ -36,13 +36,15 @@
     </div>
 
     <script>
+         localStorage.setItem('fromEindPage', 'true');
+        // Haal de score op uit localStorage
         const score = parseInt(localStorage.getItem('score')) || 0;
-        const totaalAantalVragen = 20; // ← pas dit aan als je meer of minder vragen hebt
+        const totaalAantalVragen = 20; // Aantal vragen in de quiz (kan aangepast worden)
 
-        // Score tonen
+        // Toon de score
         document.getElementById('scoreWeergave').textContent = `Je score is: ${score} van de ${totaalAantalVragen}`;
 
-        // Feedback geven op basis van de score
+        // Geef feedback op basis van de score
         let boodschap = '';
         if (score === totaalAantalVragen) {
             boodschap = 'Geweldig gedaan! 🎉';
@@ -53,10 +55,13 @@
         }
         document.getElementById('boodschap').textContent = boodschap;
 
-        // Functie om opnieuw te starten
+        // Functie om opnieuw te spelen
         function opnieuwSpelen() {
+            // Reset de score naar 0 in localStorage
             localStorage.setItem('score', 0);
-            window.location.href = 'vraag1.html';
+            localStorage.removeItem('gekozenVogels'); // Verwijder de lijst van vogels zodat deze opnieuw wordt gegenereerd
+            localStorage.setItem('huidigeVraagNummer', 1); // Reset het vraagnummer naar 1
+            window.location.href = 'vraag1.html'; // Begin de quiz opnieuw vanaf vraag 1
         }
     </script>
 

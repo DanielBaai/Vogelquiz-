@@ -69,7 +69,7 @@
         <div id="scoreDisplay" class="score-display"></div>
 <div class="Wrapper">
     <div class="Vraagmetknoppen">
-        <h1>Vraag 1:</h1>
+        <h1>Vraag 6:</h1>
         <p>Welke vogel is dit? Luister naar het geluid van de vogel:</p>
 
         <!-- Audioplayer waar het geluid wordt afgespeeld -->
@@ -86,13 +86,7 @@
     </div>
 </div>
         <script>
-            if (!localStorage.getItem('huidigeVraagNummer')) {
-                localStorage.setItem('huidigeVraagNummer', 1);
-            }
-            let huidigeVraagNummer = parseInt(localStorage.getItem('huidigeVraagNummer'));
-            
-            console.log(huidigeVraagNummer);  // Controleer de waarde van het vraagnummer
-
+           
             let vogelGeluiden = [
                 { naam: "Blauwe Reiger", bestand: "audio/Blauwe Reiger.mp3" },
                 { naam: "Boomklever", bestand: "audio/Boomklever.mp3" },
@@ -132,66 +126,49 @@
             ];
 
             
-            let randomIndex = Math.floor(Math.random() * vogelGeluiden.length);
-            let gekozenVogel = vogelGeluiden[randomIndex];
-            let juisteAntwoord = gekozenVogel.naam;
-            let fouteAntwoorden = [];
-            while (fouteAntwoorden.length < 3) {
-                let randomIndex = Math.floor(Math.random() * vogelGeluiden.length)
-                let gekozenVogel = vogelGeluiden[randomIndex];
-                if (gekozenVogel.naam !== juisteAntwoord && !fouteAntwoorden.includes(gekozenVogel.naam)){
-                    fouteAntwoorden.push(gekozenVogel.naam);
-                }
+            const quizVogels = JSON.parse(localStorage.getItem('quizVogels'));
+        const huidigeVraagNummer = 6;
+        localStorage.setItem('huidigeVraagNummer', huidigeVraagNummer);
+        const gekozenVogel = quizVogels[huidigeVraagNummer - 1];
+        const juisteAntwoord = gekozenVogel.naam;
+
+        // Kies 3 unieke foute antwoorden
+        let fouteAntwoorden = [];
+        while (fouteAntwoorden.length < 3) {
+            const random = vogelGeluiden[Math.floor(Math.random() * vogelGeluiden.length)];
+            if (random.naam !== juisteAntwoord && !fouteAntwoorden.includes(random.naam)) {
+                fouteAntwoorden.push(random.naam);
             }
+        }
 
-           
-            document.getElementById('audioSource').src = gekozenVogel.bestand;
+        const antwoorden = [juisteAntwoord, ...fouteAntwoorden].sort(() => 0.5 - Math.random());
 
-           
-            document.getElementById('audioPlayer').load();
+        document.getElementById('audioSource').src = gekozenVogel.bestand;
+        document.getElementById('audioPlayer').load();
 
-            let antwoorden = [juisteAntwoord, ...fouteAntwoorden];
+        document.getElementById('antwoord1').textContent = antwoorden[0];
+        document.getElementById('antwoord2').textContent = antwoorden[1];
+        document.getElementById('antwoord3').textContent = antwoorden[2];
+        document.getElementById('antwoord4').textContent = antwoorden[3];
 
-            antwoorden = antwoorden.sort(() => Math.random() - 0.5);
+        document.getElementById('antwoord1').onclick = () => controleerAntwoord(antwoorden[0]);
+        document.getElementById('antwoord2').onclick = () => controleerAntwoord(antwoorden[1]);
+        document.getElementById('antwoord3').onclick = () => controleerAntwoord(antwoorden[2]);
+        document.getElementById('antwoord4').onclick = () => controleerAntwoord(antwoorden[3]);
 
-           
-            document.getElementById('antwoord1').textContent = antwoorden[0];
-            document.getElementById('antwoord2').textContent = antwoorden[1];
-            document.getElementById('antwoord3').textContent = antwoorden[2];
-            document.getElementById('antwoord4').textContent = antwoorden[3];
-
-            
-            document.getElementById('antwoord1').onclick = function() {
-                controleerAntwoord(antwoorden[0]);
-            };
-            document.getElementById('antwoord2').onclick = function() {
-                controleerAntwoord(antwoorden[1]);
-            };
-            document.getElementById('antwoord3').onclick = function() {
-                controleerAntwoord(antwoorden[2]);
-            };
-            document.getElementById('antwoord4').onclick = function() {
-                controleerAntwoord(antwoorden[3]);
-            };
-
-            
-            function controleerAntwoord(antwoord) {
-                if (antwoord === juisteAntwoord) {
-                    let huidigeScore = parseInt(localStorage.getItem('score')) || 0;
-                    localStorage.setItem('score', huidigeScore + 1);
-
-                   
-                    localStorage.setItem('huidigeVraagNummer', huidigeVraagNummer);
-
-                    
-                    window.location.href = `goed.html?vraagNummer=${huidigeVraagNummer}`;
-                } else {
-                    
-                    window.location.href = `fout.html?vraagNummer=${huidigeVraagNummer}`;
-                }
+        function controleerAntwoord(antwoord) {
+            if (antwoord === juisteAntwoord) {
+                const huidigeScore = parseInt(localStorage.getItem('score')) || 0;
+                localStorage.setItem('score', huidigeScore + 1);
+                window.location.href = `goed.html?vraagNummer=${huidigeVraagNummer}`;
+            } else {
+                window.location.href = `fout.html?vraagNummer=${huidigeVraagNummer}`;
             }
-            let score = parseInt(localStorage.getItem('score')) || 0;
-            document.getElementById('scoreDisplay').textContent = `Score: ${score}`;
+        }
+
+        // Toon score
+        const score = parseInt(localStorage.getItem('score')) || 0;
+        document.getElementById('scoreDisplay').textContent = `Score: ${score}`;
         </script>
     </body>
 </html>
