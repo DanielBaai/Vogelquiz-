@@ -4,66 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Quizpagina 3</title>
-        <style> 
-            body {
-        background-color: rgb(169, 222, 155);
-        margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
-    }
-    .score-display {
-        position: absolute;
-        top: 10px;
-        right: 20px;
-        font-size: 18px;
-        font-weight: bold;
-        background-color: rgba(255, 255, 255, 0.7);
-        padding: 8px 12px;
-        border-radius: 8px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
-
-    .Vraagmetknoppen {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100vh; /* vult hele schermhoogte */
-        text-align: center;
-    }
-
-    h1 {
-        margin-bottom: 10px;
-    }
-
-    p {
-        margin-bottom: 85px;
-    }
-
-    audio {
-        margin-bottom: 70px;
-    }
-
-    .knop-container {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-    }
-
-    .antwoordKnop {
-        width: 230px;
-        padding: 1.5rem;
-        background-color: rgb(165, 245, 248);
-        border: 2px solid #333;
-        border-radius: 10px;
-        cursor: pointer;
-        font-size: 16px;
-    }
-    .Wrapper{
-        margin-top: -40px;
-        margin-left: -850px;
-    }
-        </style>
+        <link rel="stylesheet" href="Responsive-Vraag.css">
     </head>
     <body>
         <div id="scoreDisplay" class="score-display"></div>
