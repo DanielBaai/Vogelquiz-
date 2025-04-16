@@ -100,20 +100,42 @@
 
             
             function controleerAntwoord(antwoord) {
-                if (antwoord === juisteAntwoord) {
-                    let huidigeScore = parseInt(localStorage.getItem('score')) || 0;
-                    localStorage.setItem('score', huidigeScore + 1);
+    const huidigeScore = parseInt(localStorage.getItem('score')) || 0;
+    const nieuweScore = antwoord === juisteAntwoord ? huidigeScore + 1 : huidigeScore;
+    localStorage.setItem('score', nieuweScore);
 
-                   
-                    localStorage.setItem('huidigeVraagNummer', huidigeVraagNummer);
+    // Haal de lijst met gekozen vogels op, of begin met een lege lijst
+    const gekozenVogels = JSON.parse(localStorage.getItem('gekozenVogels')) || [];
 
-                    
-                    window.location.href = `GoedEind.html?vraagNummer=${huidigeVraagNummer}`;
-                } else {
-                    
-                    window.location.href = `FoutEind.html?vraagNummer=${huidigeVraagNummer}`;
-                }
-            }
+    // Voeg de huidige vraag toe aan de lijst
+    gekozenVogels.push({
+        vraagNummer: huidigeVraagNummer,
+        audio: gekozenVogel.bestand,
+        juisteAntwoord: juisteAntwoord,
+        gekozenAntwoord: antwoord
+    });
+
+    // Sla de bijgewerkte lijst op in localStorage
+    localStorage.setItem('gekozenVogels', JSON.stringify(gekozenVogels));
+
+    // Ga naar de juiste pagina
+    if (antwoord === juisteAntwoord) {
+        if (huidigeVraagNummer === 20) {
+            // Bij vraag 20 sturen we de gebruiker naar de 'GoedEind.html'
+            window.location.href = `GoedEind.html?vraagNummer=${huidigeVraagNummer}`;
+        } else {
+            window.location.href = `goed.html?vraagNummer=${huidigeVraagNummer}`;
+        }
+    } else {
+        if (huidigeVraagNummer === 20) {
+            // Bij vraag 20 sturen we de gebruiker naar de 'FoutEind.html'
+            window.location.href = `FoutEind.html?vraagNummer=${huidigeVraagNummer}`;
+        } else {
+            window.location.href = `fout.html?vraagNummer=${huidigeVraagNummer}`;
+        }
+    }
+}
+
             let score = parseInt(localStorage.getItem('score')) || 0;
             document.getElementById('scoreDisplay').textContent = `Score: ${score}`;
         </script>

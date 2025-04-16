@@ -98,14 +98,30 @@
             document.getElementById('antwoord3').onclick = () => controleerAntwoord(antwoorden[2]);
             document.getElementById('antwoord4').onclick = () => controleerAntwoord(antwoorden[3]);
 
-        function controleerAntwoord(antwoord) {
-            if (antwoord === juisteAntwoord) {
-                const huidigeScore = parseInt(localStorage.getItem('score')) || 0;
-                localStorage.setItem('score', huidigeScore + 1);
-                window.location.href = `goed.html?vraagNummer=${huidigeVraagNummer}`;
-            } else {
-                window.location.href = `fout.html?vraagNummer=${huidigeVraagNummer}`;
-            }
+            function controleerAntwoord(antwoord) {
+    const huidigeScore = parseInt(localStorage.getItem('score')) || 0;
+    const nieuweScore = antwoord === juisteAntwoord ? huidigeScore + 1 : huidigeScore;
+    localStorage.setItem('score', nieuweScore);
+
+    // Haal huidige lijst op, of begin nieuw
+    const gekozenVogels = JSON.parse(localStorage.getItem('gekozenVogels')) || [];
+
+    // Voeg deze vraag toe
+    gekozenVogels.push({
+        vraagNummer: huidigeVraagNummer,
+        audio: gekozenVogel.bestand,
+        juisteAntwoord: juisteAntwoord,
+        gekozenAntwoord: antwoord
+    });
+
+    localStorage.setItem('gekozenVogels', JSON.stringify(gekozenVogels));
+
+    // Ga naar de juiste pagina
+    if (antwoord === juisteAntwoord) {
+        window.location.href = `goed.html?vraagNummer=${huidigeVraagNummer}`;
+    } else {
+        window.location.href = `fout.html?vraagNummer=${huidigeVraagNummer}`;
+    }
 }
 
 // Toon score

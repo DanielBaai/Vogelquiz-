@@ -1,65 +1,133 @@
 <!DOCTYPE html>
 <html lang="nl">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Vogelquiz broedvogels</title>
-        <style>
-            body {
-                background-color: rgb(169, 222, 155);
-            }
-            button {
-              position: absolute;
-                top: 45%;     /* pas deze waarde aan om omhoog of omlaag te schuiven */
-                left: 76%;    /* pas deze om naar links/rechts te bewegen */
-                transform: translate(-50%, -50%);
-                background-color: #339933;
-                color: white;
-                padding: 1rem 2rem;
-                border: none;
-                font-size: 1.2rem;
-                border-radius: 1em;
-                cursor: pointer;
-            }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vogelquiz broedvogels</title>
+    <style>
+        body {
+            background-color: rgb(169, 222, 155);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+        }
 
-            button:hover {
-              background-color: #2a7a2a;
-            }
+        h1, p {
+            text-align: center;
+            margin: 10px;
+        }
 
-            .intro-image {
-                position: absolute;
-                top: 57%;     
-                left: 32.5%;    
-                transform: translate(-50%, -50%);
-                border-radius: 1em;
-                max-width: 64.5%;
-                cursor: pointer;
-            }
-        </style>
-    </head>
-    <body>
-        <h1>Welkom bij de Nederlandse broedvogelgeluidenquiz!</h1>
-        <p>De quiz waar iedereen op heeft gewacht.</p>
+        h1 {
+            font-size: 2rem;
+            margin-top: 2rem;
+        }
 
-        <!-- Voeg de afbeelding toe -->
-        <img src="afbeeldingen/Vink.jpg" alt="Afbeelding van een broedvogel" class="intro-image">
+        p {
+            font-size: 1.2rem;
+            margin-top: 1.7rem;
+        }
 
-        <!-- De Start de quiz knop -->
-        <button onclick="startQuiz()">Start de quiz</button>
+        button {
+            position: absolute;
+            top: 65%;     /* pas deze waarde aan om omhoog of omlaag te schuiven */
+            left: 73%;    /* pas deze om naar links/rechts te bewegen */
+            transform: translate(-50%, -50%);
+            background-color: #339933;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            font-size: 1.2rem;
+            border-radius: 1em;
+            cursor: pointer;
+        }
 
-        <script defer>
-            // Reset de localStorage wanneer de pagina wordt geladen
-            localStorage.removeItem('score');  // Verwijder de score
-            localStorage.removeItem('huidigeVraagNummer');  // Verwijder het vraagnummer
+        button:hover {
+            background-color: #2a7a2a;
+        }
 
-            // Functie om de quiz te starten
-            function startQuiz() {
-                // Stel het begin vraagnummer in localStorage (bijv. Vraag 1)
-                localStorage.setItem('huidigeVraagNummer', 1);
+        .intro-image {
+            position: absolute;
+            top: 58%;     
+            left: 30%;    
+            transform: translate(-50%, -50%);
+            border-radius: 1em;
+            max-width: 50%; /* Maak de afbeelding responsief */
+            height: auto;
+            cursor: pointer;
+        }
 
-                // Navigeer naar Vraag1.html
-                window.location.href = "Vraag1.html";
-            }
-        </script>
-    </body>
+        @media (max-width: 768px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+
+    button {
+        font-size: 1rem;
+        padding: 0.8rem 1.5rem;
+        top: 65%;  
+        left: 70%;
+    }
+
+    .intro-image {
+        left: 45%;
+        top: 45%;
+        max-width: 70%;  /* Zorg ervoor dat de afbeelding kleiner is op kleinere schermen */
+    }
+}
+
+/* 📱 Extra kleine schermen (bijv. telefoons) */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    p {
+        font-size: 0.9rem;
+    }
+
+    button {
+        font-size: 0.9rem;
+        padding: 0.8rem 1.2rem;
+        top: 60%;  /* Plaats de knop nog lager voor kleinere schermen */
+    }
+
+    .intro-image {
+        top: 35%;
+        left: 45%;
+        max-width: 70%; /* Nog kleinere afbeelding op zeer kleine schermen */
+    }
+}
+    </style>
+</head>
+<body>
+    <h1>Welkom bij de Nederlandse broedvogelgeluidenquiz!</h1>
+    <p>De quiz waar iedereen op heeft gewacht.</p>
+
+    <!-- Voeg de afbeelding toe -->
+    <img src="afbeeldingen/Vink.jpg" alt="Afbeelding van een broedvogel" class="intro-image">
+
+    <!-- De Start de quiz knop -->
+    <button onclick="startQuiz()">Start de quiz</button>
+
+    <script defer>
+        // Reset de localStorage wanneer de pagina wordt geladen
+        localStorage.removeItem('score');  // Verwijder de score
+        localStorage.removeItem('huidigeVraagNummer');  // Verwijder het vraagnummer
+
+        // Functie om de quiz te starten
+        function startQuiz() {
+            // Stel het begin vraagnummer in localStorage (bijv. Vraag 1)
+            localStorage.setItem('huidigeVraagNummer', 1);
+
+            // Navigeer naar Vraag1.html
+            window.location.href = "Vraag1.html";
+        }
+    </script>
+</body>
 </html>

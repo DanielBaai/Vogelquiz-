@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quiz Overzicht</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f8ff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .vraag-box {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 90%;
+      max-width: 500px;
+      text-align: center;
+    }
+
+    audio {
+      margin: 15px 0;
+    }
+
+    .antwoord {
+      margin-top: 20px;
+      font-size: 1.1rem;
+    }
+
+    .goed {
+      color: green;
+    }
+
+    .fout {
+      color: red;
+    }
+
+    .nav-knoppen {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    button {
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+    .extra-knoppen{
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="vraag-box">
+    <h2 id="vraagNummer">Vraag 1</h2>
+    <audio id="audioPlayer" controls></audio>
+    <div class="antwoord" id="antwoordWeergave"></div>
+
+    <div class="nav-knoppen">
+      <button onclick="vorigeVraag()">← Vorige</button>
+      <button onclick="volgendeVraag()">Volgende →</button>
+    </div>
+  </div>
+  <div class="extra-knoppen">
+    <button onclick="terugnaarstart()">Terug naar Start</button>
+    <button onclick="speelOpnieuw()">Speel opnieuw</button>
+  </div>
+
+  <script>
+    const vragen = JSON.parse(localStorage.getItem('gekozenVogels')) || [];
+    let huidigeIndex = 0;
+
+    function toonVraag(index) {
+      const vraag = vragen[index];
+      if (!vraag) return;
+
+      // Titel bijwerken
+      document.getElementById('vraagNummer').textContent = `Vraag ${vraag.vraagNummer}`;
+
+      // Audio instellen
+      const audioPlayer = document.getElementById('audioPlayer');
+      audioPlayer.src = vraag.audio;
+
+      // Antwoorden tonen
+      const antwoordDiv = document.getElementById('antwoordWeergave');
+      const goedBeantwoord = vraag.gekozenAntwoord === vraag.juisteAntwoord;
+
+      if (goedBeantwoord) {
+        antwoordDiv.innerHTML = `
+          <p class="goed">✅ Juiste antwoord: <strong>${vraag.juisteAntwoord}</strong></p>
+        `;
+      } else {
+        antwoordDiv.innerHTML = `
+          <p class="fout">❌ Jouw antwoord: <strong>${vraag.gekozenAntwoord}</strong></p>
+          <p class="goed">✅ Juiste antwoord: <strong>${vraag.juisteAntwoord}</strong></p>
+        `;
+      }
+    }
+
+    function volgendeVraag() {
+      if (huidigeIndex < vragen.length - 1) {
+        huidigeIndex++;
+        toonVraag(huidigeIndex);
+      }
+    }
+
+    function vorigeVraag() {
+      if (huidigeIndex > 0) {
+        huidigeIndex--;
+        toonVraag(huidigeIndex);
+      }
+    }
+    function terugnaarstart() {
+        window.location.href="index.html"
+    }
+    function speelOpnieuw() {
+        localStorage.setItem('score', 0);
+            localStorage.removeItem('gekozenVogels');
+            localStorage.setItem('huidigeVraagNummer', 1);
+            window.location.href = 'Vraag1.html';
+    }
+
+    // Start bij de eerste vraag
+    toonVraag(huidigeIndex);
+  </script>
+
+</body>
+</html>

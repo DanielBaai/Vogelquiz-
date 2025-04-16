@@ -71,6 +71,13 @@ audio {
     margin: 0;
 }
 
+/* 💻 Desktop: altijd precies 2 kolommen */
+@media (min-width: 769px) {
+    .knop-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
 /* 📱 Tablets */
 @media (max-width: 768px) {
     h1 {
