@@ -164,9 +164,9 @@
             if (antwoord === juisteAntwoord) {
                 const huidigeScore = parseInt(localStorage.getItem('score')) || 0;
                 localStorage.setItem('score', huidigeScore + 1);
-                window.location.href = `Goed.html?vraagNummer=${huidigeVraagNummer}`;
+                window.location.href = `goed.html?vraagNummer=${huidigeVraagNummer}`;
             } else {
-                window.location.href = `Fout.html?vraagNummer=${huidigeVraagNummer}`;
+                window.location.href = `fout.html?vraagNummer=${huidigeVraagNummer}`;
             }
         }
 
