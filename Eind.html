@@ -2,6 +2,7 @@
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz afgerond</title>
     <style>
         body {
@@ -9,6 +10,11 @@
             text-align: center;
             padding: 50px;
             background-color: #f0f8ff;
+            display: flex;
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+            margin: 0;
         }
         .score-box {
             background-color: #e0ffe0;
@@ -35,7 +41,7 @@
         <button onclick="opnieuwSpelen()">Opnieuw spelen</button>
     </div>
 
-    <script>
+    <script defer>
          localStorage.setItem('fromEindPage', 'true');
         // Haal de score op uit localStorage
         const score = parseInt(localStorage.getItem('score')) || 0;

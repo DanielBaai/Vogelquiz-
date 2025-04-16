@@ -2,6 +2,7 @@
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quizpagina 1</title>
     <style>
         body {
@@ -79,7 +80,7 @@
         </div>
     </div>
 
-    <script>
+    <script defer>
         // Alle beschikbare vogels
         const vogelGeluiden = [
             { naam: "Blauwe Reiger", bestand: "audio/Blauwe Reiger.mp3" },
@@ -163,9 +164,9 @@
             if (antwoord === juisteAntwoord) {
                 const huidigeScore = parseInt(localStorage.getItem('score')) || 0;
                 localStorage.setItem('score', huidigeScore + 1);
-                window.location.href = `goed.html?vraagNummer=${huidigeVraagNummer}`;
+                window.location.href = `Goed.html?vraagNummer=${huidigeVraagNummer}`;
             } else {
-                window.location.href = `fout.html?vraagNummer=${huidigeVraagNummer}`;
+                window.location.href = `Fout.html?vraagNummer=${huidigeVraagNummer}`;
             }
         }
 

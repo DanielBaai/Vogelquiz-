@@ -2,6 +2,7 @@
 <html lang="nl">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Vogelquiz broedvogels</title>
         <style>
             body {
@@ -17,7 +18,7 @@
                 padding: 1rem 2rem;
                 border: none;
                 font-size: 1.2rem;
-                border-radius: 10px;
+                border-radius: 1em;
                 cursor: pointer;
             }
 
@@ -25,13 +26,12 @@
               background-color: #2a7a2a;
             }
 
-            /* Optioneel: Je kunt de afbeelding centreren */
             .intro-image {
                 position: absolute;
-                top: 57%;     /* pas deze waarde aan om omhoog of omlaag te schuiven */
-                left: 32.5%;    /* pas deze om naar links/rechts te bewegen */
+                top: 57%;     
+                left: 32.5%;    
                 transform: translate(-50%, -50%);
-                border-radius: 10px;
+                border-radius: 1em;
                 max-width: 64.5%;
                 cursor: pointer;
             }
@@ -47,7 +47,7 @@
         <!-- De Start de quiz knop -->
         <button onclick="startQuiz()">Start de quiz</button>
 
-        <script>
+        <script defer>
             // Reset de localStorage wanneer de pagina wordt geladen
             localStorage.removeItem('score');  // Verwijder de score
             localStorage.removeItem('huidigeVraagNummer');  // Verwijder het vraagnummer
