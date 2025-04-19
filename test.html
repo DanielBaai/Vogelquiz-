@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vogelquiz broedvogels</title>
+  <style>
+    body {
+      background-color: rgb(169, 222, 155);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      font-family: Arial, sans-serif;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    h1, p {
+      text-align: center;
+      margin: 10px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-top: 2rem;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-top: 1.7rem;
+    }
+
+    .intro-image {
+      position: absolute;
+      top: 55%;
+      left: 30%;
+      transform: translate(-50%, -50%);
+      border-radius: 1em;
+      max-width: 50%;
+      height: auto;
+    }
+
+    .menu-knoppen {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 68%;
+      left: 73%;
+      transform: translate(-50%, -50%);
+    }
+
+    .menu-knoppen button {
+      background-color: #339933;
+      color: white;
+      padding: 1rem 2rem;
+      border: none;
+      font-size: 1.2rem;
+      border-radius: 1em;
+      cursor: pointer;
+      width: 250px;
+      transition: background-color 0.2s;
+    }
+
+    .menu-knoppen button:hover {
+      background-color: #2a7a2a;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+
+      .intro-image {
+        left: 45%;
+        top: 45%;
+        max-width: 70%;
+      }
+
+      .menu-knoppen {
+        top: 70%;
+        left: 50%;
+      }
+
+      .menu-knoppen button {
+        width: 220px;
+        font-size: 1rem;
+        padding: 0.8rem 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      p {
+        font-size: 0.9rem;
+      }
+
+      .intro-image {
+        top: 35%;
+        left: 45%;
+        max-width: 70%;
+      }
+
+      .menu-knoppen {
+        top: 75%;
+      }
+
+      .menu-knoppen button {
+        width: 200px;
+        font-size: 0.95rem;
+        padding: 0.8rem 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Welkom bij de Nederlandse broedvogelgeluidenquiz!</h1>
+  <p>De quiz waar iedereen op heeft gewacht.</p>
+
+  <img src="afbeeldingen/Vink.jpg" alt="Afbeelding van een broedvogel" class="intro-image" />
+
+  <div class="menu-knoppen">
+    <button onclick="location.href='oefen.html'">🧠 Oefen met sovon vogelgeluiden</button>
+    <button onclick="startQuiz()">🎯 Start de Sovon quiz</button>
+    <button onclick="location.href='oefen.html'">🧠 Oefen met alle vogelgeluiden</button>
+    <button onclick="startQuizA()">🐦 Quiz met alle vogels</button>
+  </div>
+
+  <script defer>
+    localStorage.removeItem('score');
+    localStorage.removeItem('huidigeVraagNummer');
+    localStorage.removeItem('gekozenVogels');
+
+    function startQuiz() {
+      localStorage.setItem('huidigeVraagNummer', 1);
+      window.location.href = "Vraag1.html";
+    }
+    function startQuizA() {
+      localStorage.setItem('huidigeVraagNummer', 1);
+      location.href="Allevogels/VraagA1.html";
+    }
+  </script>
+</body>
+</html>

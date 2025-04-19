@@ -123,14 +123,13 @@
       }
     }
     function terugnaarstart() {
-        window.location.href="index.html"
-        localStorage.removeItem('gekozenVogels');
+        window.location.href="../index.html"
     }
     function speelOpnieuw() {
         localStorage.setItem('score', 0);
             localStorage.removeItem('gekozenVogels');
             localStorage.setItem('huidigeVraagNummer', 1);
-            window.location.href = 'Vraag1.html';
+            window.location.href = 'VraagA1.html';
     }
 
     // Start bij de eerste vraag

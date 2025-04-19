@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quizpagina 1</title>
+    <link rel="stylesheet" href="Responsive-Vraag.css">
+</head>
+<body>
+    <div id="scoreDisplay" class="score-display"></div>
+
+    <div class="Wrapper">
+        <div class="Vraagmetknoppen">
+            <h1>Vraag 1</h1>
+            <p>Welke vogel is dit? Luister naar het geluid van de vogel:</p>
+
+            <audio controls id="audioPlayer">
+                <source id="audioSource" src="" type="audio/mp3">
+                Je browser ondersteunt geen audio.
+            </audio>
+
+            <div class="knop-container">
+                <button class="antwoordKnop" id="antwoord1">Antwoord 1</button>
+                <button class="antwoordKnop" id="antwoord2">Antwoord 2</button>
+                <button class="antwoordKnop" id="antwoord3">Antwoord 3</button>
+                <button class="antwoordKnop" id="antwoord4">Antwoord 4</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="vogel.js"></script>
+    <!-- Daarna je quizlogica -->
+    <script defer src="vogelA1.js"></script>
+</body>
+</html>
