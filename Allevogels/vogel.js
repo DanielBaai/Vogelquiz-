@@ -76,4 +76,14 @@ const vogelGeluiden = [
     { naam: "Veldleeuwerik", bestand: "audio/Veldleeuwerik.mp3" },
     { naam: "Vink", bestand: "audio/Vink.mp3" },
     { naam: "Waterhoen", bestand: "audio/Waterhoen.mp3" },
+    { naam: "Waterral", bestand: "audio/Waterral.mp3" },
+    { naam: "Wespendief", bestand: "audio/Wespendief.mp3" },
+    { naam: "Wilde Eend", bestand: "audio/Wilde Eend.mp3" },
+    { naam: "Winterkoning", bestand: "audio/Winterkoning.mp3" },
+    { naam: "Wulp", bestand: "audio/Wulp.mp3" },
+    { naam: "Zanglijster", bestand: "audio/Zanglijster.mp3" },
+    { naam: "Zilvermeeuw", bestand: "audio/Zilvermeeuw.mp3" },
+    { naam: "Zwarte Kraai", bestand: "audio/Zwarte Kraai.mp3" },
+    { naam: "Zwarte Wouw", bestand: "audio/Zwarte Wouw.mp3" },
+    { naam: "Zwartkop", bestand: "audio/Zwartkop.mp3" }
 ]
